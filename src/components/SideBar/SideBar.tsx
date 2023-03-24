@@ -10,7 +10,7 @@ import {
     HelpOutlined,
     PieChartOutlined,
     BarChartOutlined,
-    CalendarMonthOutlined,
+    CalendarTodayOutlined,
     ReceiptOutlined,
 } from "@mui/icons-material";
 import { Box, Typography, useTheme } from "@mui/material";
@@ -19,6 +19,38 @@ import { useState } from "react";
 import { Menu, MenuItem, ProSidebar } from "react-pro-sidebar";
 // @ts-ignore: Cannot find module
 import user from "assets/user.jpg";
+import { Link } from "react-router-dom";
+
+interface CustomMenuItemProps {
+    title: string;
+    to: string;
+    icon: React.ReactNode;
+    selected: string;
+    setSelected: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const CustomMenuItem = ({
+    icon,
+    selected,
+    setSelected,
+    title,
+    to,
+}: CustomMenuItemProps) => {
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
+
+    return (
+        <MenuItem
+            active={selected === title}
+            style={{ color: colors.grey[100] }}
+            onClick={() => setSelected(title)}
+            icon={icon}
+        >
+            <Typography>{title}</Typography>
+            <Link to={to} />
+        </MenuItem>
+    );
+};
 
 interface SideBarProps {}
 
@@ -90,6 +122,121 @@ const SideBar = ({}: SideBarProps) => {
                             </Box>
                         </Box>
                     )}
+
+                    {/* Some Menu items */}
+                    <Box paddingLeft={isCollapsed ? "" : "10%"}>
+                        <CustomMenuItem
+                            title="Dashboard"
+                            to="/"
+                            icon={<HomeOutlined />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+
+                        <Typography
+                            variant="h6"
+                            color={colors.grey[300]}
+                            sx={{ m: "15px 0 5px 20px" }}
+                        >
+                            Data
+                        </Typography>
+
+                        <CustomMenuItem
+                            title="Manage Team"
+                            to="/team"
+                            icon={<PeopleOutlined />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+
+                        <CustomMenuItem
+                            title="Contacts Information"
+                            to="/contacts"
+                            icon={<ContactsOutlined />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+
+                        <CustomMenuItem
+                            title="Invoices Balances"
+                            to="/invoices"
+                            icon={<ReceiptOutlined />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+
+                        <Typography
+                            variant="h6"
+                            color={colors.grey[300]}
+                            sx={{ m: "15px 0 5px 20px" }}
+                        >
+                            Pages
+                        </Typography>
+
+                        <CustomMenuItem
+                            title="Profile Form"
+                            to="/form"
+                            icon={<PersonOutlined />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+
+                        <CustomMenuItem
+                            title="Calendar"
+                            to="/calendar"
+                            icon={<CalendarTodayOutlined />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+
+                        <CustomMenuItem
+                            title="FAQ"
+                            to="/faq"
+                            icon={<HelpOutlined />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+
+                        <Typography
+                            variant="h6"
+                            color={colors.grey[300]}
+                            sx={{ m: "15px 0 5px 20px" }}
+                        >
+                            Charts
+                        </Typography>
+
+                        <CustomMenuItem
+                            title="Bar Chart"
+                            to="/bar"
+                            icon={<BarChartOutlined />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+
+                        <CustomMenuItem
+                            title="Pie Chart"
+                            to="/pie"
+                            icon={<PieChartOutlined />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+
+                        <CustomMenuItem
+                            title="Line Chart"
+                            to="/line"
+                            icon={<TimelineOutlined />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+
+                        <CustomMenuItem
+                            title="Geography Chart"
+                            to="/geography"
+                            icon={<MapOutlined />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                    </Box>
                 </Menu>
             </ProSidebar>
         </Box>
