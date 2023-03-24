@@ -16,6 +16,9 @@ import {
 import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "theme";
 import { useState } from "react";
+import { Menu, MenuItem, ProSidebar } from "react-pro-sidebar";
+// @ts-ignore: Cannot find module
+import user from "assets/user.jpg";
 
 interface SideBarProps {}
 
@@ -45,19 +48,50 @@ const SideBar = ({}: SideBarProps) => {
                 },
             }}
         >
-            {/* User section */}
-            {!isCollapsed && (
-                <Box>
-                    <Box>
-                        <img src="" alt="" />
-                    </Box>
+            <ProSidebar>
+                <Menu>
+                    <MenuItem></MenuItem>
 
-                    <Box>
-                        <Typography>Jimmy McGill</Typography>
-                        <Typography>CEO</Typography>
-                    </Box>
-                </Box>
-            )}
+                    {/* User section */}
+                    {!isCollapsed && (
+                        <Box mb="25px">
+                            <Box
+                                display="flex"
+                                justifyContent="center"
+                                alignItems="center"
+                            >
+                                <img
+                                    src={user}
+                                    alt="profile user"
+                                    width="100px"
+                                    height="100px"
+                                    style={{
+                                        cursor: "pointer",
+                                        borderRadius: "50%",
+                                    }}
+                                />
+                            </Box>
+
+                            <Box textAlign="center">
+                                <Typography
+                                    variant="h2"
+                                    color={colors.grey[100]}
+                                    fontWeight="bold"
+                                    sx={{ m: "10px 0 0 0" }}
+                                >
+                                    Jimmy McGill
+                                </Typography>
+                                <Typography
+                                    variant="h5"
+                                    color={colors.greenAccent[500]}
+                                >
+                                    CEO
+                                </Typography>
+                            </Box>
+                        </Box>
+                    )}
+                </Menu>
+            </ProSidebar>
         </Box>
     );
 };
