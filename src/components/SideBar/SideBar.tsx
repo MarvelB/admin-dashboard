@@ -13,7 +13,7 @@ import {
     CalendarTodayOutlined,
     ReceiptOutlined,
 } from "@mui/icons-material";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "theme";
 import { useState } from "react";
 import { Menu, MenuItem, ProSidebar } from "react-pro-sidebar";
@@ -60,6 +60,16 @@ const SideBar = ({}: SideBarProps) => {
     const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
     const [selected, setSelected] = useState<string>("Dashboard");
 
+    const handleCollapse = (
+        e:
+            | React.MouseEvent<HTMLButtonElement>
+            | React.MouseEvent<HTMLLIElement>,
+    ) => {
+        e.preventDefault();
+
+        setIsCollapsed(!isCollapsed);
+    };
+
     return (
         <Box
             sx={{
@@ -80,9 +90,35 @@ const SideBar = ({}: SideBarProps) => {
                 },
             }}
         >
-            <ProSidebar>
-                <Menu>
-                    <MenuItem></MenuItem>
+            <ProSidebar collapsed={isCollapsed}>
+                <Menu iconShape="square">
+                    <MenuItem
+                        onClick={handleCollapse}
+                        icon={isCollapsed ? <MenuOutlined /> : undefined}
+                        style={{
+                            margin: "10px 0 20px 0",
+                            color: colors.grey[100],
+                        }}
+                    >
+                        {!isCollapsed && (
+                            <Box
+                                display="flex"
+                                justifyContent="space-between"
+                                ml="15px"
+                                alignItems="center"
+                            >
+                                <Typography
+                                    variant="h3"
+                                    color={colors.grey[100]}
+                                >
+                                    ADMIN
+                                </Typography>
+                                <IconButton onClick={handleCollapse}>
+                                    <MenuOutlined />
+                                </IconButton>
+                            </Box>
+                        )}
+                    </MenuItem>
 
                     {/* User section */}
                     {!isCollapsed && (
