@@ -1,10 +1,19 @@
+import { Box } from "@mui/material";
+import Header from "components/Header/Header";
+
 interface DashboardProps {}
 
 const Dashboard = ({}: DashboardProps) => {
     return (
-        <div>
-            <h2>Dashboard</h2>
-        </div>
+        <Box>
+            <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+            >
+                <Header title="DASHBOARD" subTitle="Welcome to the dashboard" />
+            </Box>
+        </Box>
     );
 };
 
