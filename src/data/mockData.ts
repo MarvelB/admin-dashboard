@@ -1,4 +1,4 @@
-import { TeamMemberModel } from "types";
+import { ContactModel, TeamMemberModel } from "types";
 import { tokens } from "../theme";
 
 export const mockDataTeam: TeamMemberModel[] = [
@@ -76,7 +76,7 @@ export const mockDataTeam: TeamMemberModel[] = [
     },
 ];
 
-export const mockDataContacts = [
+export const mockDataContacts: ContactModel[] = [
     {
         id: 1,
         name: "Jon Snow",
