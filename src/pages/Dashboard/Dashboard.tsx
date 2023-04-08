@@ -11,6 +11,9 @@ import {
 } from "@mui/icons-material";
 import StatsBox from "components/StatsBox/StatsBox";
 import LineChartComponent from "components/LineChartComponent/LineChartComponent";
+import ProgressCircle from "components/ProgressCircle/ProgressCircle";
+import BarComponent from "components/BarComponent/BarComponent";
+import GeographyChartComponent from "components/GeographyChartComponent/GeographyChartComponent";
 
 interface DashboardProps {}
 
@@ -230,6 +233,7 @@ const Dashboard = ({}: DashboardProps) => {
                                 >
                                     {transaction.txId}
                                 </Typography>
+
                                 <Typography
                                     color={colors.grey[100]}
                                     variant="h5"
@@ -238,9 +242,11 @@ const Dashboard = ({}: DashboardProps) => {
                                     {transaction.user}
                                 </Typography>
                             </Box>
+
                             <Box color={colors.grey[100]}>
                                 {transaction.date}
                             </Box>
+
                             <Box
                                 sx={{
                                     backgroundColor: colors.greenAccent[500],
@@ -252,6 +258,76 @@ const Dashboard = ({}: DashboardProps) => {
                             </Box>
                         </Box>
                     ))}
+                </Box>
+
+                {/* 3rd row */}
+                <Box
+                    gridColumn="span 4"
+                    gridRow="span 2"
+                    sx={{
+                        backgroundColor: colors.primary[400],
+                        padding: "30px",
+                    }}
+                >
+                    <Typography variant="h5" fontWeight="600">
+                        Campaing
+                    </Typography>
+
+                    <Box
+                        display="flex"
+                        flexDirection="column"
+                        alignItems="center"
+                        mt="25px"
+                    >
+                        <ProgressCircle size="125" />
+                        <Typography
+                            variant="h5"
+                            color={colors.greenAccent[500]}
+                            sx={{ mt: "15px" }}
+                        >
+                            $99,872 generated revenue
+                        </Typography>
+                        <Typography variant="h5" fontWeight="600">
+                            Includes extra costs
+                        </Typography>
+                    </Box>
+                </Box>
+
+                <Box
+                    gridColumn="span 4"
+                    gridRow="span 2"
+                    sx={{
+                        backgroundColor: colors.primary[400],
+                    }}
+                >
+                    <Typography
+                        variant="h5"
+                        fontWeight="600"
+                        padding="30px 30px 0 30px"
+                    >
+                        Sales Quantity
+                    </Typography>
+
+                    <Box mt="-20px" height="250px">
+                        <BarComponent isDashboard />
+                    </Box>
+                </Box>
+
+                <Box
+                    gridColumn="span 4"
+                    gridRow="span 2"
+                    sx={{
+                        backgroundColor: colors.primary[400],
+                        padding: "30px",
+                    }}
+                >
+                    <Typography variant="h5" fontWeight="600" mb="15px">
+                        Geography Based Traffic
+                    </Typography>
+
+                    <Box height="200px">
+                        <GeographyChartComponent isDashboard />
+                    </Box>
                 </Box>
             </Box>
         </Box>
