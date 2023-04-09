@@ -16,7 +16,15 @@ const TopBar = ({}: TopBarProps) => {
     const colorMode = useContext(ColorModeContext);
 
     return (
-        <Box display="flex" justifyContent="space-between" p={2}>
+        <Box
+            display="flex"
+            justifyContent="space-between"
+            p={2}
+            position="sticky"
+            top="0"
+            zIndex="1"
+            sx={{ backgroundColor: theme.palette.background.default }}
+        >
             {/* Search bar */}
             <Box
                 display="flex"
