@@ -216,9 +216,9 @@ const Dashboard = ({}: DashboardProps) => {
                             Recent Transactions
                         </Typography>
                     </Box>
-                    {mockTransactions.map((transaction) => (
+                    {mockTransactions.map((transaction, index) => (
                         <Box
-                            key={transaction.txId}
+                            key={`${transaction.txId}-${index}`}
                             display="flex"
                             justifyContent="space-between"
                             alignItems="center"
