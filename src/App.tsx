@@ -1,4 +1,4 @@
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import SideBar from "components/SideBar/SideBar";
 import TopBar from "components/TopBar/TopBar";
 import Bar from "pages/Bar/Bar";
@@ -25,7 +25,7 @@ function App() {
                 <div className="app">
                     <SideBar />
 
-                    <main className="content">
+                    <Box className="content" sx={{ overflowY: "scroll" }}>
                         <TopBar />
 
                         <Routes>
@@ -41,7 +41,7 @@ function App() {
                             <Route path="/calendar" element={<Calendar />} />
                             <Route path="/geography" element={<Geography />} />
                         </Routes>
-                    </main>
+                    </Box>
                 </div>
             </ThemeProvider>
         </ColorModeContext.Provider>
